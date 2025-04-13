@@ -1,0 +1,10 @@
+  def file_is_hidden(self, p):
+        if os.name== 'nt':
+            attribute = win32api.GetFileAttributes(p)
+            if(attribute & (win32con.FILE_ATTRIBUTE_HIDDEN | win32con.FILE_ATTRIBUTE_SYSTEM)):
+                return True
+        else:
+            if(os.path.basename(p).startswith('.')): #linux-osx
+                return True
+
+        return False
